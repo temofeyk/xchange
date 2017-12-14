@@ -71,6 +71,6 @@ export const Trade = props => {
             </Footer>
         </Container>
     )
-}
+};
 
 export default enhance(Trade);

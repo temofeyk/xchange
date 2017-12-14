@@ -26,7 +26,7 @@ export class AuthPage extends PureComponent {
     }
   };
 
-  handleClickTry = event => {
+  handleClickTry = () => {
     const {isLoginMode, email, password} = this.state;
     const {loginRequest, registrationRequest} = this.props;
 
