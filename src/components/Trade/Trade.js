@@ -1,12 +1,13 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
-import {compose, pure} from 'recompose';
+import {compose, lifecycle, pure} from 'recompose';
 import logo from '../../assets/Logo-white.svg';
 import TradeSwitcher from '../TradeSwitcher';
 import TradeLayout from '../TradeLayout';
 import styled from 'styled-components';
 import {getUserEmail} from '../../reducers/user';
 import {connect} from "react-redux";
+import {fetchUserInfoRequest} from '../../actions/user';
 
 const Container = styled.header`
   height: 100%;
@@ -48,7 +49,15 @@ const enhance = compose(
     withRouter,
     connect(store => ({
         userEmail: getUserEmail(store),
-    })),
+    }), {
+        fetchUserInfoRequest,
+
+    }),
+    lifecycle({
+        componentDidMount() {
+            this.props.fetchUserInfoRequest();
+        }
+    }),
     pure,
 );
 

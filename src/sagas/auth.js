@@ -7,7 +7,6 @@ import {
     setTokenToLocalStorage,
     removeTokenFromLocalStorage,
 } from '../localStorage';
-import {fetchUserInfoRequest} from '../actions/user';
 import {fetchWalletRequest} from '../actions/wallet';
 
 export function* authFlow() {
@@ -29,7 +28,6 @@ export function* authFlow() {
         yield call(setTokenApi, token);
         yield call(setTokenToLocalStorage, token);
         yield put(fetchWalletRequest());
-        yield put(fetchUserInfoRequest());
         yield take(logout);
         yield call(removeTokenFromLocalStorage);
         yield call(clearTokenApi);
